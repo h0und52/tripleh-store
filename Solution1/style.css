@@ -1,0 +1,210 @@
+﻿/* --- 1. Змінні (Налаштування кольорів) --- */
+:root {
+    --bg-body: #1b1b1b;       /* Основний фон */
+    --bg-panel: #2c2c2c;      /* Фон сайдбару */
+    --bg-header: #111111;     /* Фон шапки і футера */
+    --accent: #f39c12;        /* Твій фірмовий помаранчевий */
+    --accent-hover: #e67e22;  /* Колір при наведенні */
+    --text-main: #e0e0e0;     /* Основний текст */
+    --text-muted: #b0b0b0;    /* Менш важливий текст */
+    --border: #444444;        /* Колір рамок */
+    --gap: 20px;
+}
+
+/* --- 2. Глобальні налаштування --- */
+* {
+    box-sizing: border-box; /* Елементи не розтягуються через padding */
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--bg-body);
+    color: var(--text-main);
+    line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Притискає футер до низу */
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    transition: color 0.3s ease;
+}
+
+ul {
+    list-style: none;
+}
+
+/* --- 3. Шапка (Header) --- */
+header {
+    background-color: var(--bg-header);
+    padding: 20px;
+    text-align: center;
+    border-bottom: 2px solid var(--border);
+}
+
+.header-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+}
+
+header img.logo {
+    width: 60px;
+    height: auto;
+}
+
+header h1, header h2 {
+    color: var(--accent);
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* --- 4. Навігація (Nav) --- */
+nav {
+    background-color: #222;
+    padding: 15px;
+    text-align: center;
+    position: sticky; /* Меню "липне" до верху при прокрутці */
+    top: 0;
+    z-index: 1000;
+    border-bottom: 1px solid var(--border);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+}
+
+nav a {
+    color: var(--accent);
+    margin: 0 15px;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 14px;
+}
+
+nav a:hover {
+    color: var(--white);
+    text-shadow: 0 0 10px var(--accent); /* Ефект світіння */
+}
+
+/* --- 5. Основний макет (Layout) --- */
+.container {
+    display: flex;
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+    flex: 1; /* Розтягує контент */
+    padding: 20px 0;
+}
+
+/* Сайдбар */
+.sidebar {
+    width: 250px;
+    background-color: var(--bg-panel);
+    padding: 20px;
+    margin-left: 20px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    height: fit-content;
+}
+
+.sidebar p {
+    font-size: 1.2rem;
+    color: var(--accent);
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+
+.sidebar li {
+    padding: 8px 0;
+    color: var(--text-muted);
+    cursor: pointer;
+    border-bottom: 1px solid #3a3a3a;
+}
+
+.sidebar li:hover {
+    color: var(--accent);
+    padding-left: 5px; /* Анімація зсуву */
+    transition: 0.3s;
+}
+
+/* Основний контент */
+.main-content {
+    flex: 1; /* Займає всю решту ширини */
+    padding: 0 30px;
+}
+
+/* --- 6. Каталог товарів (Grid) --- */
+/* Це автоматично створює сітку товарів */
+.catalog-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 25px;
+}
+
+.item {
+    background-color: var(--bg-panel);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 15px;
+    text-align: center;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+    border-color: var(--accent);
+}
+
+.item img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover; /* Картинка гарно обрізається, не розтягуючись */
+    border-radius: 4px;
+    margin-bottom: 15px;
+}
+
+.item h3 {
+    margin-bottom: 10px;
+    color: #fff;
+}
+
+.item p {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+/* --- 7. Футер --- */
+footer {
+    background-color: var(--bg-header);
+    padding: 20px;
+    text-align: center;
+    border-top: 2px solid var(--border);
+    margin-top: auto;
+    color: var(--text-muted);
+}
+
+/* --- 8. Адаптивність (Мобільні пристрої) --- */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column; /* Блоки стають один під одним */
+    }
+    
+    .sidebar {
+        width: 100%;
+        margin: 0 0 20px 0;
+        border-radius: 0;
+    }
+
+    nav {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+}
